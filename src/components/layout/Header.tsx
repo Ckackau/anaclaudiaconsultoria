@@ -1,106 +1,26 @@
-import { useState, useEffect } from "react";
-import { Menu, X, MessageCircle } from "lucide-react";
+import NavLink from "@/components/NavLink";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
-const navLinks = [
-  { label: "Serviços", href: "#servicos" },
-  { label: "Método", href: "#metodo" },
-  { label: "Experiência", href: "#experiencia" },
-  { label: "Contacto", href: "#contacto" },
-];
-
-const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
+export default function Header() {
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-background/95 backdrop-blur-sm border-b border-border shadow-sm"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="section-container">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <a href="#" className="flex flex-col">
-            <span className="text-lg font-serif font-medium text-foreground">Ana Cláudia</span>
-            <span className="text-xs text-muted-foreground -mt-1">Consultoria em Gestão</span>
-          </a>
+    <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur">
+      <div className="page-container flex h-16 items-center justify-between gap-4">
+        {/* Logo clicável para o topo */}
+        <a href="#topo" className="leading-tight">
+          <div className="text-xl font-semibold">Ana Cláudia</div>
+          <div className="text-sm text-muted-foreground">Consultoria em Gestão</div>
+        </a>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
-              >
-                {link.label}
-              </a>
-            ))}
-            
-            <a
-              href="https://wa.me/351963105060"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#25D366] hover:bg-[#20BD5A] text-white text-sm font-medium transition-all duration-300"
-            >
-              <MessageCircle className="w-4 h-4" />
-              WhatsApp
-            </a>
-          </nav>
+        <nav className="hidden md:flex items-center gap-8">
+          <NavLink href="#servicos" label="Serviços" />
+          <NavLink href="#metodo" label="Método" />
+          <NavLink href="#experiencia" label="Experiência" />
+          <NavLink href="#contacto" label="Contacto" />
+        </nav>
 
-          {/* Mobile Menu Toggle */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-foreground"
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-border animate-fade-in">
-            <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 py-2"
-                >
-                  {link.label}
-                </a>
-              ))}
-              
-              <a
-                href="https://wa.me/351963105060"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-[#25D366] hover:bg-[#20BD5A] text-white text-sm font-medium transition-all duration-300 mt-2"
-              >
-                <MessageCircle className="w-4 h-4" />
-                WhatsApp
-              </a>
-            </div>
-          </nav>
-        )}
+        {/* Mantém só este CTA no header (o flutuante fica no Index.tsx) */}
+        <WhatsAppButton label="WhatsApp" className="rounded-lg px-5 py-3" />
       </div>
     </header>
   );
-};
-
-export default Header;
+}

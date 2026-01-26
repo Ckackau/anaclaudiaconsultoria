@@ -11,6 +11,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Header />
+
       <main>
         <HeroSection />
         <ServicesSection />
@@ -18,8 +19,11 @@ const Index = () => {
         <ExperienceSection />
         <ContactSection />
       </main>
+
       <Footer />
-      <WhatsAppButton />
+
+      {/* Apenas 1 botão flutuante global */}
+      
     </div>
   );
 };

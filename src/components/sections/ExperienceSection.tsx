@@ -1,102 +1,76 @@
-import { Building2, ShoppingBag, Pill, Briefcase } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 const experiences = [
   {
-    icon: ShoppingBag,
-    sector: "Retalho",
-    company: "Auchan Retail Portugal",
+    title: "Retalho",
+    subtitle: "Auchan Retail Portugal",
     role: "Gestão de Unidade / Franquia",
-    period: "Desde 2021",
-    description: "Gestão operacional de equipas, controlo de stock, organização de processos e apoio à operação diária com foco na eficiência e resultados.",
+    desc: "Gestão operacional de equipas, controlo de stock, organização de processos e apoio à operação diária com foco na eficiência e resultados.",
+    meta: "Desde 2021",
   },
   {
-    icon: Building2,
-    sector: "Sector Bancário",
-    company: "",
-    role: "Gestão Financeira",
-    period: "",
-    description: "Experiência em operações bancárias, gestão de processos financeiros e atendimento especializado ao cliente.",
+    title: "Sector Bancário",
+    subtitle: "Gestão Financeira",
+    role: "Operações e Processos",
+    desc: "Experiência em operações bancárias, gestão de processos financeiros e atendimento especializado ao cliente.",
+    meta: "Experiência anterior",
   },
   {
-    icon: Pill,
-    sector: "Sector Farmacêutico",
-    company: "",
-    role: "Administração",
-    period: "",
-    description: "Funções administrativas, organização documental e suporte à gestão em ambiente regulamentado.",
+    title: "Sector Farmacêutico",
+    subtitle: "Administração",
+    role: "Processos e Organização",
+    desc: "Funções administrativas, organização documental e suporte à gestão em ambiente regulamentado.",
+    meta: "Experiência anterior",
   },
 ];
 
-const ExperienceSection = () => {
+const tags = [
+  "Gestão de Equipas",
+  "Controlo de Stock",
+  "Processos Operacionais",
+  "Organização Administrativa",
+  "Eficiência Interna",
+  "Redução de Custos",
+];
+
+export default function ExperienceSection() {
   return (
-    <section id="experiencia" className="section-padding bg-warm">
-      <div className="section-container">
-        <div className="max-w-2xl mb-16">
-          <div className="accent-line mb-6" />
-          <h2 className="heading-section text-foreground mb-6">
-            Percurso Profissional
-          </h2>
-          <p className="text-body">
-            Mais de 8 anos de experiência em gestão administrativa e operacional, 
-            com percurso nos sectores bancário, farmacêutico e retalho. Esta experiência 
-            multissectorial permite uma abordagem adaptada a cada contexto empresarial.
+    <section id="experiencia" className="py-14 md:py-20">
+      <div className="page-container">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-2xl font-semibold md:text-3xl">Experiência</h2>
+          <p className="mt-3 text-muted-foreground">
+            Experiência multissectorial que permite uma abordagem adaptada a cada contexto empresarial.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {experiences.map((exp, index) => (
-            <div
-              key={index}
-              className="card-professional group relative overflow-hidden"
-            >
-              {/* Icon */}
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
-                  <exp.icon className="w-7 h-7 text-accent" />
+        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          {experiences.map((e) => (
+            <Card key={e.title} className="h-full">
+              <CardHeader>
+                <div className="flex items-center justify-between gap-3">
+                  <CardTitle className="text-lg">{e.title}</CardTitle>
+                  <span className="text-xs text-muted-foreground">{e.meta}</span>
                 </div>
-                <div>
-                  <h3 className="text-lg font-medium text-foreground font-sans">
-                    {exp.sector}
-                  </h3>
-                  {exp.period && (
-                    <p className="text-xs text-accent font-medium">{exp.period}</p>
-                  )}
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="space-y-3">
-                {exp.company && (
-                  <p className="text-sm font-medium text-foreground/80">{exp.company}</p>
-                )}
-                {exp.role && (
-                  <p className="text-sm text-accent">{exp.role}</p>
-                )}
-                <p className="text-body text-sm">{exp.description}</p>
-              </div>
-
-              {/* Decorative corner */}
-              <div className="absolute top-0 right-0 w-20 h-20 bg-accent/5 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </div>
+                <div className="text-sm text-muted-foreground">{e.subtitle}</div>
+              </CardHeader>
+              <CardContent>
+                <div className="text-sm font-medium">{e.role}</div>
+                <p className="mt-2 text-sm text-muted-foreground">{e.desc}</p>
+              </CardContent>
+            </Card>
           ))}
         </div>
 
-        {/* Skills highlight */}
-        <div className="mt-16 pt-12 border-t border-border">
-          <div className="flex flex-wrap justify-center gap-4">
-            {["Gestão de Equipas", "Controlo de Stock", "Processos Operacionais", "Organização Administrativa", "Eficiência Interna", "Redução de Custos"].map((skill, index) => (
-              <span
-                key={index}
-                className="px-5 py-2.5 rounded-full bg-card border border-border text-sm font-medium text-foreground/80 hover:border-accent/50 hover:text-foreground transition-all duration-300"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
+        <div className="mt-10 flex flex-wrap justify-center gap-2">
+          {tags.map((t) => (
+            <Badge key={t} variant="outline" className="px-4 py-2 text-sm">
+              {t}
+            </Badge>
+          ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default ExperienceSection;
+}
