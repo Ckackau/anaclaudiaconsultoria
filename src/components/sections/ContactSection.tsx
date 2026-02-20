@@ -1,7 +1,7 @@
 import { Mail, MapPin } from "lucide-react";
 
 export default function ContactSection() {
-  const whatsappNumberDisplay = "+351 963 105 060";
+  const whatsappNumberDisplay;
   const whatsappNumberLink = "351963105060"; // sem espaços
   const email = "Luiana_2018@hotmail.com";
   const linkedinUrl =
