@@ -2,7 +2,7 @@ import { Mail, MapPin } from "lucide-react";
 
 export default function ContactSection() {
   const whatsappNumberDisplay = "";
-  const whatsappNumberLink = "351963105060"; // sem espaços
+  const whatsappNumberLink = ""; // sem espaços
   const email = "Luiana_2018@hotmail.com";
   const linkedinUrl =
     "https://www.linkedin.com/in/ana-cl%C3%A1udia-de-s%C3%A1-carvalho-35933b164/";
